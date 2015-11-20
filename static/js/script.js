@@ -129,12 +129,10 @@
     data.summoners = summoners;
 
     request(
-      "http://localhost:5000/api/ec/contact",
+      "https://gamerbet.co/api/ec/contact",
       "POST",
       JSON.stringify(data),
       true).then(function(res) {
-      console.log(res);
-
       $("#getReplays").html("Thanks! Keep an eye on your inbox, you'll get an email when your account is ready.")
       $(".submitGetReplays").remove();
     })
