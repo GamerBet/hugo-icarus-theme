@@ -21,13 +21,13 @@
 		</div>
 	</div>
 </section>
-<section class="bg-primary" id="third">
+<section style="background:#F7F7F7;" id="third">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 text-center">
 				<h2 class="section-heading">{{ with .Site.Params.third.headline }}{{ . }}{{ end }}</h2>
-				<hr class="light">
-				<p class="text-faded">{{ with .Site.Params.third.description }}{{ . | markdownify }}{{ end }}</p>
+				<hr class="primary">
+				<p>{{ with .Site.Params.third.description }}{{ . | markdownify }}{{ end }}</p>
 			</div>
 		</div>
 	</div>
@@ -43,7 +43,7 @@
 		</div>
 	</div>
 </section>
-<aside class="bg-dark">
+<aside id="cta" class="bg-dark">
 	<div class="container text-center">
 		<div class="call-to-action">
 			<h2>{{ with .Site.Params.aside.headline }}{{ . }}{{ end }}</h2>
@@ -55,9 +55,9 @@
 	<div class="container-fluid">
 		<div class="row no-gutter">
 			{{ range .Site.Data.projects }}
-			<div class="col-lg-4 col-sm-6">
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
 				<a href="{{ .Site.BaseURL }}{{ .link }}" class="portfolio-box portfolio-link" data-toggle="modal">
-					<img src="banner/{{ .img }}" class="img-responsive" alt="">
+					<img src="banner/{{ .img }}" style="width:100%;" alt="">
 					<div class="portfolio-box-caption">
 						<div class="portfolio-box-caption-content">
 							<div class="project-category text-faded">
@@ -74,4 +74,4 @@
 		</div>
 	</div>
 </section>
-{{ partial "page_contact" . }} {{ partial "page_modals" . }} {{ partial "page_js" . }}
+{{ partial "page_modals" . }} {{ partial "page_js" . }}

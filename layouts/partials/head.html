@@ -11,12 +11,14 @@
     <link href="{{ .RSSlink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
     <link href="{{ .RSSlink }}" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" /> {{ end }}
     <link rel="icon" href="{{ .Site.BaseURL }}{{ .Site.Params.favicon }}">
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/bootstrap.min.css" type="text/css">
     <link rel="apple-touch-icon" href="{{ .Site.BaseURL }}/apple-touch-icon.png" />
     <link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css">
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/common.css">
     <link rel="stylesheet" href="{{ .Site.BaseURL }}css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ .Site.BaseURL }}css/monokai.css">
     <link rel="stylesheet" href="{{ .Site.BaseURL }}fancybox/jquery.fancybox.css"> {{ template "_internal/opengraph.html" . }} {{ template "_internal/google_news.html" . }} {{ template "_internal/schema.html" . }} {{ template "_internal/twitter_cards.html" . }}
 </head>
 
 <body>
-    <div class="container">
+    <div>

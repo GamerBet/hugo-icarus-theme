@@ -1,25 +1,27 @@
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand page-scroll" href="#page-top">{{ with .Site.Params.navigation.brand }}{{ . }}{{ end }}</a>
+            <ul class="nav navbar-nav page-scroll" href="#page-top">
+                <li>
+                    <a class="navbar-brand" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+                </li>
+                <li>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle menu</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </li>
+            </ul>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+                {{ range .Site.Params.menu }}
                 <li>
-                    <a class="page-scroll" href="{{ .Site.BaseURL }}{{ .Site.Params.navigation.teams_link }}">{{ with .Site.Params.navigation.teams }}{{ . }}{{ end }}</a>
+                    <a class="page-scroll" href="{{ .link | absURL }}">{{ .label }}</a>
                 </li>
-                <li>
-                    <a class="page-scroll" href="{{ .Site.BaseURL }}{{ .Site.Params.navigation.review_link }}">{{ with .Site.Params.navigation.review }}{{ . }}{{ end }}</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="{{ .Site.BaseURL }}{{ .Site.Params.navigation.demo_link }}">{{ with .Site.Params.navigation.demo }}{{ . }}{{ end }}</a>
-                </li>
+                {{ end }}
             </ul>
         </div>
     </div>

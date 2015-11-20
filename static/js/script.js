@@ -110,18 +110,114 @@
 
   $("#getReplays").submit(function(event) {
     var data = {}
-    data.summonerName = $("#summonerName").val();
+    data.firstName = $("#firstName").val();
+    data.lastName = $("#lastName").val();
     data.region = $("#region").val();
     data.email = $("#email").val();
 
-    $.ajax({
-      type: "POST",
-      url: "https://gamerbet.co/api/ec/contact",
-      data: data,
-      success: console.log,
-      dataType: "json"
-    });
+    var names = document.getElementsByName("summonerName");
+    var regions = document.getElementsByName("region");
+
+    var summoners = [];
+    for (I = 0; I < names.length; I++) {
+      summoners.push({
+        summonerName: names[I].value,
+        region: regions[I].value
+      });
+    }
+
+    data.summoners = summoners;
+
+    request(
+      "http://localhost:5000/api/ec/contact",
+      "POST",
+      JSON.stringify(data),
+      true).then(function(res) {
+      console.log(res);
+
+      $("#getReplays").html("Thanks! Keep an eye on your inbox, you'll get an email when your account is ready.")
+      $(".submitGetReplays").remove();
+    })
     event.preventDefault();
   });
+
+  var max_fields = 10; //maximum input boxes allowed
+  var x = 1; //initlal text box count
+
+  function initSummonerForm() {
+
+    var wrapper = $("#getReplays"); //Fields wrapper
+    var add_button = $("#addSummoner"); //Add button ID
+    $(add_button).click(function(e) { //on add input button click
+      e.preventDefault();
+      if (x < max_fields) { //max input box allowed
+        x++; //text box increment
+        add_button.remove();
+        $(wrapper).append('<div class="row">' +
+          '<div class="col-lg-5 col-md-5 col-sm-5">' +
+          '<input id="summonerName1" name="summonerName" type="text" placeholder="Summoner Name" class="search-form-input" />' +
+          '</div>' +
+          '<div class="col-lg-5 col-md-5 col-sm-5">' +
+          '<input id="region1" name="region" type="text" placeholder="Region" class="search-form-input" />' +
+          '</div>' +
+          '<div class="col-lg-2 col-md-2 col-sm-2">' +
+          '<a id="addSummoner" class="follow" href="#"><i class="fa fa-plus"></i></a>' +
+          '</div>' +
+          '</div>');
+        initSummonerForm()
+      } else {
+        add_button.remove();
+      }
+    });
+
+    $(wrapper).on("click", ".remove_field", function(e) { //user click on remove text
+      e.preventDefault();
+      $(this).parent('div').remove();
+      x--;
+    })
+  }
+
+  initSummonerForm();
+
+  function request(route, method, data, json) {
+    return new Promise(function(resolve, reject) {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open(method, route, true);
+
+      if (method == "POST") {
+        //Send the appropriate headers
+        xmlhttp.setRequestHeader("Content-type", "application/json");
+      }
+
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4) {
+          if (method == "POST")
+            console.log("Response:", xmlhttp.responseText);
+          console.log("method:", method);
+          if (xmlhttp.status == 200) {
+            if (json == true) {
+              resolve(JSON.parse(xmlhttp.responseText))
+            } else {
+              resolve(xmlhttp.responseText)
+            }
+          } else if (xmlhttp.status == 400) {
+            if (json == true) {
+              reject(JSON.parse(xmlhttp.responseText))
+            } else {
+              reject(xmlhttp.responseText)
+            }
+          } else {
+            if (json == true) {
+              reject(JSON.parse(xmlhttp.responseText))
+            } else {
+              reject(xmlhttp.responseText)
+            }
+          }
+        }
+      }
+
+      xmlhttp.send(data);
+    });
+  }
 
 })(jQuery);

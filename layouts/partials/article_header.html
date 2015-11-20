@@ -8,7 +8,7 @@
         <div class="article-date">
             <i class="fa fa-calendar"></i>
             <time datetime="{{ .Date }}" itemprop="datePublished">{{ .Date.Format .Site.Params.date_format }}</time>
-            &middot; {{ .Params.views }} {{ with .Site.Data.l10n.articles.views }}{{.}}{{end}} &middot; {{ .Params.duration }}
+            &middot; {{ .Params.duration }}
         </div>
         <div class="article-category">
             {{ range .Params.categories }}
