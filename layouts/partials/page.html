@@ -1,0 +1,77 @@
+{{ partial "page_nav" . }} {{ partial "page_hero" . }}
+<section class="bg-primary" id="first">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 text-center">
+				<h2 class="section-heading">{{ with .Site.Params.first.headline }}{{ . }}{{ end }}</h2>
+				<hr class="light">
+				<p class="text-faded">{{ with .Site.Params.first.description }}{{ . | markdownify }}{{ end }}</p>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="second">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 text-center">
+				<h2 class="section-heading">{{ with .Site.Params.second.headline }}{{ . }}{{ end }}</h2>
+				<hr class="primary">
+				<p>{{ with .Site.Params.second.description }}{{ . | markdownify }}{{ end }}</p>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="bg-primary" id="third">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 text-center">
+				<h2 class="section-heading">{{ with .Site.Params.third.headline }}{{ . }}{{ end }}</h2>
+				<hr class="light">
+				<p class="text-faded">{{ with .Site.Params.third.description }}{{ . | markdownify }}{{ end }}</p>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="fourth">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 text-center">
+				<h2 class="section-heading">{{ with .Site.Params.fourth.headline }}{{ . }}{{ end }}</h2>
+				<hr class="primary">
+				<p>{{ with .Site.Params.fourth.description }}{{ . | markdownify }}{{ end }}</p>
+			</div>
+		</div>
+	</div>
+</section>
+<aside class="bg-dark">
+	<div class="container text-center">
+		<div class="call-to-action">
+			<h2>{{ with .Site.Params.aside.headline }}{{ . }}{{ end }}</h2>
+			<a href="#requestAnAccount" class="btn btn-default btn-xl wow tada" data-toggle="modal">{{ with .Site.Params.aside.button.text }}{{ . }}{{ end }}</a>
+		</div>
+	</div>
+</aside>
+<section class="no-padding" id="demos">
+	<div class="container-fluid">
+		<div class="row no-gutter">
+			{{ range .Site.Data.projects }}
+			<div class="col-lg-4 col-sm-6">
+				<a href="{{ .Site.BaseURL }}{{ .link }}" class="portfolio-box portfolio-link" data-toggle="modal">
+					<img src="banner/{{ .img }}" class="img-responsive" alt="">
+					<div class="portfolio-box-caption">
+						<div class="portfolio-box-caption-content">
+							<div class="project-category text-faded">
+								{{ .category }}
+							</div>
+							<div class="project-name">
+								{{ .title }}
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			{{ end }}
+		</div>
+	</div>
+</section>
+{{ partial "page_contact" . }} {{ partial "page_modals" . }} {{ partial "page_js" . }}

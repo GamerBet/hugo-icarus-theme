@@ -1,15 +1,27 @@
 <aside id="profile">
   <div class="inner profile-inner">
     <div class="base-info profile-block">
-      <img id="avatar" src="{{ .Site.BaseURL }}css/images/avatar.png">
-      {{ with .Site.Params.author}}<h2 id="name">{{ . }}</h2>{{ end }}
-      {{ with .Site.Params.bio }}<h3 id="title">{{ . }}</h3>{{ end }}
-      {{ with .Site.Params.location }}<span id="location"><i class="fa fa-map-marker"></i>{{ . }}</span>{{ end }}
-      {{ with .Site.Params.profile.follow_button }}
-          <a id="follow" href="{{ . }}">
-              {{with $.Site.Data.l10n.profile.follow_button}}{{.}}{{end}}
-          </a>
-      {{ end }}
+      <h2 id="name">Never Miss A Moment!</h1>
+      <br>
+      <p style="font-size:1.25em;padding-left:15px;">
+        Track all of your replays
+        <br>
+        <br>
+        Automatically tag kills and clutch plays
+        <br>
+        <br>
+        Spectate them whenever you want
+      </p>
+      <br>
+      <br>
+      <div class="search-form-wrap">
+        <form id="getReplays" action="#" method="POST" accept-charset="UTF-8" class="search-form">
+            <input id="summonerName" name="summonerName" type="text" placeholder="Summoner Name" class="search-form-input" />
+            <input id="region" name="region" type="text" placeholder="Region" class="search-form-input" />
+            <input id="email" name="email" type="text" placeholder="Email" class="search-form-input" />
+        </form>
+        <a id="follow" class="submitGetReplays" href="#">Get my Replays</a>
+      </div>
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
