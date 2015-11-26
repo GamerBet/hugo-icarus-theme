@@ -1,0 +1,43 @@
+{{ partial "head" . }} {{ partial "header" . }}
+<div id="container">
+	<div class="outer">
+		<section id="main">
+			{{ $paginator := .Paginate (where .Site.Pages "Type" "demo") }} {{ range $paginator.Pages }}
+			<article class="article article-type-post" itemscope="" itemprop="blogPost">
+				<div class="article-inner">
+					{{ if and (isset .Params "video") (not (eq .Params.video "")) }}
+					<div class="wrapper">
+						<div class="h_iframe">
+							<!-- a transparent image is preferable -->
+							<img style="opacity:0;" class="ratio" src="http://placehold.it/16x9" />
+							<iframe src="{{ .Params.video }}" frameborder="0" allowfullscreen></iframe>
+						</div>
+					</div>
+					{{ else if and (isset .Params "banner") (not (eq .Params.banner "")) }}
+					<a href="{{ .Permalink }}" itemprop="url">
+						<img src="{{ .Site.BaseURL }}{{ .Params.banner }}" class="article-banner">
+					</a> {{ end }} {{ partial "article_header" . }}
+					<div class="article-entry" itemprop="articleBody">
+						<p>
+							{{ .Summary }}
+							<br>
+						</p>
+						<p class="article-more-link">
+							<a href="{{ .Permalink }}">
+                        {{with .Site.Data.l10n.articles.read_more}}{{.}}{{end}}
+                    </a>
+						</p>
+					</div>
+					{{ partial "article_footer" . }}
+				</div>
+			</article>
+			{{ end }} {{ partial "pagination" . }}
+		</section>
+		<!-- // main section -->
+		{{ partial "demo_sidebar" . }}
+	</div>
+</div>
+{{ partial "footer" . }}
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<section id="main">
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            {{ if and (isset .Params "video") (not (eq .Params.video "")) }}
+            <div class="wrapper">
+                <div class="h_iframe">
+                    <!-- a transparent image is preferable -->
+                    <img class="ratio" src="http://placehold.it/16x9" />
+                    <iframe src="{{ .Params.video }}" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            {{ else if and (isset .Params "banner") (not (eq .Params.banner "")) }}
+            <img src="{{ .Site.BaseURL }}{{ .Params.banner }}" class="article-banner"> {{ end }} {{ partial "article_header" . }}
+            <div class="article-entry" itemprop="articleBody">
+                {{ .Content }}
+            </div>
+            {{ partial "article_footer" . }}
+        </div>
+        {{ partial "prev_next_post" . }}
+    </article>
+    <section id="comments">
+        <div id="disqus_thread">
+            {{ template "_internal/disqus.html" . }}
+        </div>
+    </section>
+</section>

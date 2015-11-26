@@ -1,14 +1,19 @@
 <section id="main">
-    {{ $paginator := .Paginate (where .Site.Pages "Type" "post") }}
-    {{ range $paginator.Pages }}
+    {{ $paginator := .Paginate (where .Site.Pages "Type" "review") }} {{ range $paginator.Pages }}
     <article class="article article-type-post" itemscope="" itemprop="blogPost">
         <div class="article-inner">
-            {{ if and (isset .Params "banner") (not (eq .Params.banner "")) }}
+            {{ if and (isset .Params "video") (not (eq .Params.video "")) }}
+            <div class="wrapper">
+                <div class="h_iframe">
+                    <!-- a transparent image is preferable -->
+                    <img style="opacity:0;" class="ratio" src="http://placehold.it/16x9" />
+                    <iframe src="{{ .Params.video }}" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            {{ else if and (isset .Params "banner") (not (eq .Params.banner "")) }}
             <a href="{{ .Permalink }}" itemprop="url">
-                <img src="{{ .Site.BaseURL }}{{ .Params.banner }}" class="article-banner"> {{ end }}
-            </a>
-
-            {{ partial "article_header" . }}
+                <img src="{{ .Site.BaseURL }}{{ .Params.banner }}" class="article-banner">
+            </a> {{ end }} {{ partial "article_header" . }}
             <div class="article-entry" itemprop="articleBody">
                 <p>
                     {{ .Summary }}
@@ -23,8 +28,6 @@
             {{ partial "article_footer" . }}
         </div>
     </article>
-    {{ end }}
-
-    {{ partial "pagination" . }}
+    {{ end }} {{ partial "pagination" . }}
 </section>
 <!-- // main section -->

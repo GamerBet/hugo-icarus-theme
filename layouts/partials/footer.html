@@ -1,10 +1,49 @@
 <footer id="footer">
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; {{.Now.Format "2006"}}<br>
-      {{ with .Site.Params.copyright }}{{ . | markdownify}}{{ end }}
-    </div>
-  </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+				<h3>Resources</h3>
+				<ul class="alt">
+					{{ range .Site.Params.menu }}
+					<li>
+						<a href="{{ .link | absURL }}">{{ .label }}</a>
+					</li>
+					{{ end }}
+				</ul>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+				<h3>Demos</h3>
+				<ul class="alt">
+					{{ range first 5 (where .Site.Pages "Type" "demo") }}
+					<li>
+						<a href="{{ .Permalink }}">{{ .Title }}</a>
+					</li>
+					{{ end }}
+				</ul>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+				<h3>Social</h3>
+				<ul class="icons">
+					<li><a href="https://twitter.com/esportsclips" class="icon rounded fa fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="https://facebook.com/esportsclips" class="icon rounded fa fa-facebook"><span class="label">Facebook</span></a></li>
+				</ul>
+				<h3>Mail</h3>
+				<ul class="alt">
+					<li>support@gamerbet.co</li>
+				</ul>
+				<h3>Address</h3>
+				<ul class="alt">
+					<li>
+						340 S Lemon Ave
+						<br> Walnut, CA, 91789
+						<br> United States
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="copyright col-sm-12 text-center">
+			<a href="">{{ .Site.Title }}</a> &copy;
+			</ul>
+		</div>
+		{{ partial "footer_js" . }}
 </footer>
-
-{{ partial "footer_js" . }}

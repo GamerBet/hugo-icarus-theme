@@ -1,15 +1,12 @@
-{{ partial "head" . }}
+<!DOCTYPE html>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
 
-<div id="container">
-    {{ partial "header" . }}
+<head>
+	{{ partial "page_head" . }}
+</head>
 
-    <div class="outer">
-    {{ partial "profile" . }}
-    {{ partial "article_list" . }}
-    {{ partial "sidebar" . }}
-    </div>
-</div>
-
-{{ partial "footer" . }}
+<body id="page-top">
+	{{ partial "page" . }} {{ partial "footer" . }}
 </body>
+
 </html>
