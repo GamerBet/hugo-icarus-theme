@@ -118,6 +118,7 @@
   $("#signup").submit(function(event) {
     signup(event).then(function() {
       $("#signup").html("Thanks! Keep an eye on your inbox, you'll get an email when your account is ready.")
+      $(".header-message").remove();
     })
   });
 
