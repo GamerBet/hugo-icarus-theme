@@ -1,5 +1,5 @@
 <section id="main">
-    {{ $paginator := .Paginate (where .Site.Pages "Type" "review") }} {{ range $paginator.Pages }}
+    {{ $paginator := .Paginate (where .Site.Pages "Type" "blog") }} {{ range $paginator.Pages }}
     <article class="article article-type-post" itemscope="" itemprop="blogPost">
         <div class="article-inner">
             {{ if and (isset .Params "video") (not (eq .Params.video "")) }}

@@ -5,9 +5,9 @@
     </h3>
     <div class="widget">
         <ul id="recent-post">
-            {{ range first 5 (where .Site.Pages "Type" "review") }}
+            {{ range first 5 (where .Site.Pages "Type" "blog") }}
             <li>
-                {{ with .Params.banner }}
+                {{ with .Params.thumbnail }}
                 <div class="item-thumbnail">
                     <a href="{{ $.Permalink }}" class="thumbnail">
                         <span style="background-image:url({{ $.Site.BaseURL }}{{ . }})" alt="{{ $.Title }}" class="thumbnail-image"></span>
